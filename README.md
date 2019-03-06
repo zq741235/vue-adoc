@@ -1,29 +1,32 @@
 # adoc
 
-## Project setup
+## 安装
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm install vue-adoc 
 ```
 
-### Compiles and minifies for production
+### 使用
+
+```javascript
+// main.js
+import Adoc from 'vue-adoc'
+Vue.use(Adoc)
 ```
-npm run build
+```html
+// app
+<adoc :navs="[{
+      "title": "快速开始",
+      "list": [
+      {
+        "path": "/other/introduction",
+        "name": "介绍"
+      }]
+  }]"
+  :topOptions="{
+  title:'UI'
+  log:'xx.png'
+}">
+  <router-view />
+</adoc>
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,8 +1,11 @@
-import Vue from "vue";
-import App from "./App.vue";
+import './assets/bootstrap.css'
+// import 'highlight.js/styles/github.css'
+// import 'github-markdown-css'
+import Adoc from "./components/doc";
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+export default function install(Vue) {
+  // components.map(Component => {
+  //   Vue.component(Component.name, Component);
+  // });
+  Vue.component('adoc', Adoc)
+}
