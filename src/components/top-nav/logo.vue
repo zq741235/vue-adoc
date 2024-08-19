@@ -1,22 +1,27 @@
 <template>
-  <a class="navbar-brand navbar-logo"
+  <a
+    class="navbar-brand navbar-logo"
     :class="[size]"
-        href="#">
-    <img :src="src"
-        alt="logo">
-</a>
+    href="#"
+  >
+    <img
+      :src="src"
+      alt="logo"
+    >
+  </a>
 </template>
 <script>
 export default {
 
-  name: 'logo',
+  name: 'Logo',
   props: {
     size: {
       type: String,
       default: 'big'
     },
     src: {
-      type: String
+      type: String,
+      default: ''
     },
   },
   data() {

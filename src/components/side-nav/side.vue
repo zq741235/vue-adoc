@@ -1,13 +1,19 @@
 <template>
   <ul class="menu-root">
-    <li v-for="(item,key) in config"
-      :key="key">
-      <p class="menu__group__title">{{item.title}}</p>
+    <li
+      v-for="(item,key) in config"
+      :key="key"
+    >
+      <p class="menu__group__title">
+        {{ item.title }}
+      </p>
       <ul class="menu__group__item">
-        <li v-for="(sub,key) in item.list"
-          :key="key">
+        <li
+          v-for="(sub,skey) in item.list"
+          :key="skey"
+        >
           <router-link :to="{path: sub.path}">
-            {{sub.name||sub.path }}
+            {{ sub.name||sub.path }}
           </router-link>
         </li>
       </ul>
@@ -17,10 +23,13 @@
 <script>
 export default {
 
-  name: 'side',
+  name: 'Side',
   props: {
     config: {
-      type: Array
+      type: Array,
+      default(){
+        return []
+      }
 
     }
   },

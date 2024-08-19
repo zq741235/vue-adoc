@@ -3,44 +3,61 @@
     <!--  :logo=""
     :title="topOptions.title" -->
     <topNav v-bind="topOptions">
-      <span ref="menuButton"
-                slot="menuButton"
-                class="menu-button visible-xs visible-sm"
-                @click="toggleSideBar">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                </span>
+      <template #menuButton>
+        <span
+          ref="menuButton"
+                
+          class="menu-button visible-xs visible-sm"
+          @click="toggleSideBar"
+        >
+          <i />
+          <i />
+          <i />
+        </span>
+      </template>
     </topNav>
-    <div id="main"
-      class="container-fluid ">
+    <div
+      id="main"
+      class="container-fluid "
+    >
       <div class="row">
         <!-- hidden-sm hidden-xs   -->
-        <div ref="sidebar"
+        <div
+          ref="sidebar"
           class="col-md-2 sidebar"
-          :class="{open:isVisibelSideBar}">
-          <sideNav :config="navs"></sideNav>
+          :class="{open:isVisibelSideBar}"
+        >
+          <sideNav :config="navs" />
         </div>
         <div class="col-md-6">
-          <div class="content markdown-body"
-            :style="sidebarStyle">
+          <div
+            class="content markdown-body"
+            :style="sidebarStyle"
+          >
             <slot />
           </div>
         </div>
         <div class="col-md-4 hidden-sm hidden-xs">
           <div class="viewbox viewbox-fixed">
             <div class="viewbox__nav">
-              <div class="viewbox__url"
-                :title="viewboxSrc">{{viewboxSrc}}</div>
-              <div class="viewbox__reload"
-                title="跳转到该示例页面"
-                @click="goViewbox">
+              <div
+                class="viewbox__url"
+                :title="viewboxSrc"
+              >
+                {{ viewboxSrc }}
               </div>
+              <div
+                class="viewbox__reload"
+                title="跳转到该示例页面"
+                @click="goViewbox"
+              />
             </div>
-            <iframe ref="viewbox"
+            <iframe
+              ref="viewbox"
               :src="viewboxSrc"
               frameborder="0"
-              :style="viewboxStyle"></iframe>
+              :style="viewboxStyle"
+            />
           </div>
         </div>
       </div>
@@ -49,25 +66,38 @@
 </template>
 <script>
 // import { navs } from './router'
-import sideNav from './side-nav/side'
-import topNav from './top-nav/top'
+import sideNav from './side-nav/side.vue'
+import topNav from './top-nav/top.vue'
 
 export default {
-  name: 'documentApp',
+  name: 'DocumentApp',
+  components: {
+    sideNav,
+    topNav
+  },
   props: {
     navs: {
-      type: Array
+      type: Array,
+      default(){
+        return []
+      }
     },
     topOptions: {
-      title: String,
-      logo: String
+      type: Object,
+      default(){
+        return {
+          title: '',
+          logo: ''
+        }
+      }
     },
     isShowPhone: {
       type: Boolean,
       default: false
     },
     demoUrl: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -102,10 +132,6 @@ export default {
       //   overflowY: 'scroll'
       // }
     }
-  },
-  components: {
-    sideNav,
-    topNav
   },
   watch: {
     // pageUrl() {

@@ -4,10 +4,12 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <logo :src="logo" />
-          <a class="navbar-brand"
-                        href="#">
-                {{title}}
-                 </a>
+          <a
+            class="navbar-brand"
+            href="#"
+          >
+            {{ title }}
+          </a>
         </div>
       </div>
     </nav>
@@ -15,26 +17,36 @@
     <nav class=" navbar-fixed-top visible-xs visible-sm mobie__navbar ">
       <div class="container-fluid">
         <div class="navbar-header">
-          <slot name="menuButton"></slot>
-          <logo size="small"
-            :src="logo" />
+          <slot name="menuButton" />
+          <logo
+            size="small"
+            :src="logo"
+          />
         </div>
       </div>
     </nav>
   </div>
 </template>
 <script>
-import logo from './logo'
+import logo from './logo.vue'
+import logoPng from '../../assets/logo.png'
 export default {
-  name: 'top',
+  name: 'Top',
+  components: {
+    logo
+  },
   props: {
     title: {
-      type: String
+      type: String,
+      default: ''
     },
     logo: {
       type: String,
-      default: require('../../assets/logo.png')
+      default: logoPng
     }
+  },
+  data() {
+    return {}
   },
   computed: {
     examplesSrc() {
@@ -42,12 +54,7 @@ export default {
       return this.origin + '#' + this.$route.path
     }
   },
-  data() {
-    return {}
-  },
-  components: {
-    logo
-  }
+  
 }
 </script>
 <style lang="scss">
@@ -81,9 +88,7 @@ export default {
   }
 }
 
-.navbar-header {
-  // padding: 15px 0;
-}
+ 
 
 .navbar-brand {
   font-family: Monaco, "Lucida Console", monospace;
@@ -94,6 +99,7 @@ export default {
   line-height: 50px;
   color: $auiColorPrimary;
   font-weight: 700;
+  overflow: hidden;
 
   &:hover,
   &:focus {
@@ -101,7 +107,6 @@ export default {
     text-decoration: none;
   }
 
-  overflow: hidden;
 }
 
 .navbar-fixed-top {

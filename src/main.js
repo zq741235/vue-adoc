@@ -1,11 +1,10 @@
-import './assets/bootstrap.css'
-// import 'highlight.js/styles/github.css'
-// import 'github-markdown-css'
-import Adoc from "./components/doc";
+import './assets/bootstrap.css' 
 
-export default function install(Vue) {
+import Adoc from "./components/doc.vue";
+
+export default function install(app) {
   // components.map(Component => {
   //   Vue.component(Component.name, Component);
   // });
-  Vue.component('adoc', Adoc)
+  app.component('Adoc', Adoc)
 }
